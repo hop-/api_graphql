@@ -24,5 +24,8 @@ module Types
     def all_restaurants
       Restaurant.all
     end
+
+    field :restaurant, resolver: Queries::RestaurantQuery,
+      description: "Get restaurant by id"
   end
 end
