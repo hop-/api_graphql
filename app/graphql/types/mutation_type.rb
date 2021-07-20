@@ -8,5 +8,9 @@ module Types
       description: "Create an item"
     field :update_item, mutation: Mutations::UpdateItem,
       description: "Update the existing item"
+    field :create_order, mutation: Mutations::CreateOrder,
+      description: "Create an order"
+    field :fulfill_order, mutation: Mutations::FulfillOrder,
+      description: "Fulfill the first order in queue for given restaurant"
   end
 end

@@ -7,25 +7,19 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :all_items, [Types::ItemType], null: false,
-      description: "List all items"
-    def all_items
-      Item.all
-    end
-
     field :all_categories, [Types::CategoryType], null: false,
       description: "List all categories"
     def all_categories
       Category.all
     end
 
-    field :all_restaurants, [Types::RestaurantType], null: false,
-      description: "List all restaurants"
-    def all_restaurants
-      Restaurant.all
-    end
+    field :restaurants, resolver: Queries::RestaurantsQuery,
+      description: "Get restaurants"
 
-    field :restaurant, resolver: Queries::RestaurantQuery,
-      description: "Get restaurant by id"
+    field :items, resolver: Queries::ItemsQuery,
+      description: "Get items"
+
+    field :orders, resolver: Queries::OrdersQuery,
+      description: "Get orders"
   end
 end
