@@ -7,10 +7,10 @@ module Mutations
     null true
 
     def resolve(restaurant_id:)
-      Order.joins(:item)
-        .where('item.restaurant_id' => restaurant_id, 'made_at' => nil)
-        .order(created_at: :asc)
-        .first().tap { |order|
+      Restaurant.find(restaurant_id)
+        .orders
+        .where('made_at' => nil)
+        .first.tap { |order|
           return unless order
           order.update!(made_at: DateTime.now)
         }
